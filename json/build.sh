@@ -24,10 +24,9 @@ fi
 gdc -o json_d_gdc_fast -O3 -frelease test_fast.d fast/source/fast/cstring.d fast/source/fast/buffer.d fast/source/fast/helpers.d fast/source/fast/json.d fast/source/fast/parsing.d fast/source/fast/intmath.d
 
 if [ ! -d asdf ]; then
-	git clone --depth 1 git@github.com:tamediadigital/asdf.git
+	git clone --depth 1 https://github.com/tamediadigital/asdf.git
 fi
-ldc2 -ofjson_d_ldc_asdf -O5 -release -enable-inlining -boundscheck=off -d-version=SSE42 -d-version=Have_asdf test_asdf.d asdf/source/asdf/asdf.d asdf/source/asdf/jsonbuffer.d asdf/source/asdf/jsonparser.d asdf/source/asdf/outputarray.d asdf/source/asdf/package.d asdf/source/asdf/serialization.d asdf/source/asdf/simd.d asdf/source/asdf/utility.d 
-
+ldc -mcpu=native -ofjson_d_ldc_asdf  -release -enable-inlining -O5 -w  -d-version=SSE42 -d-version=Have_bla -d-version=Have_asdf test_asdf.d asdf/source/asdf/asdf.d asdf/source/asdf/jsonbuffer.d asdf/source/asdf/jsonparser.d asdf/source/asdf/outputarray.d asdf/source/asdf/package.d asdf/source/asdf/serialization.d asdf/source/asdf/simd.d asdf/source/asdf/utility.d
 
 if [ ! -d rapidjson ]; then
   git clone --depth 1 https://github.com/miloyip/rapidjson.git
